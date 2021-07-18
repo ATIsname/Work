@@ -1,0 +1,9 @@
+X:\Работа\TestLibrary\bin\Debug\netstandard2.0\TestLibrary.deps.json
+X:\Работа\TestLibrary\bin\Debug\netstandard2.0\TestLibrary.dll
+X:\Работа\TestLibrary\bin\Debug\netstandard2.0\TestLibrary.pdb
+X:\Работа\TestLibrary\obj\Debug\netstandard2.0\TestLibrary.AssemblyInfoInputs.cache
+X:\Работа\TestLibrary\obj\Debug\netstandard2.0\TestLibrary.AssemblyInfo.cs
+X:\Работа\TestLibrary\obj\Debug\netstandard2.0\TestLibrary.csproj.CoreCompileInputs.cache
+X:\Работа\TestLibrary\obj\Debug\netstandard2.0\TestLibrary.dll
+X:\Работа\TestLibrary\obj\Debug\netstandard2.0\TestLibrary.pdb
+X:\Работа\TestLibrary\obj\Debug\netstandard2.0\TestLibrary.csprojAssemblyReference.cache

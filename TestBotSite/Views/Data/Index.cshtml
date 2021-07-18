@@ -1,0 +1,26 @@
+﻿@using TestBotSite.Models;
+
+@model List<string>
+
+
+
+<div class="w-100 h-100">
+    <div class="text-center">
+        <ul class="border border-white rounded list-group scroll-bar h-400px">
+            @foreach (var t in Model)
+            {
+                <li class="list-group-item d-flex myradio pointer-event h-auto">
+                    <a class="btn w-100 " type="button" name="testButton">t</a>
+                </li>
+            }
+        </ul>
+    </div>
+    <div>
+        <button>
+            Select all
+        </button>
+        <button>
+            Download
+        </button>
+    </div>
+</div>

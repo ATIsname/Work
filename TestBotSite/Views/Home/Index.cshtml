@@ -1,0 +1,49 @@
+﻿@model string
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TestBotSite</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/js/site.js"></script>
+</head>
+<body>
+    <div class="modal__background">
+        <div class="modal__window">
+            @using (Html.BeginForm("Tests", "Home", FormMethod.Get, new { @class = "auth-form" }))
+            {
+                <form class="auth-form" name="form-auth">
+                    @if (!string.IsNullOrEmpty(Model))
+                    {
+                        <p>@Model</p>
+                        <br />
+                    }
+                    <label class="auth-form__label">
+                        <span class="auth-form__placeholder">email</span>
+                        <input class="auth-form__input input-email" type="email" name="email" value="dan.lis.2016@mail.ru" autocomplete="off" required>
+                    </label>
+
+                    <label class="auth-form__label">
+                        <span class="auth-form__placeholder">password</span>
+                        <input class="auth-form__input input-password" type="password" name="password" value="password" autocomlete="off" required>
+                        <div class="auth-form__toggler">
+                            <i class="la la-eye auth-form__icon"></i>
+                            <input type="checkbox" class="auth-form__checkbox password-toggler">
+                        </div>
+                    </label>
+
+                    <div class="auth-form__answer"></div>
+
+                    <input class="auth-form__submit" type="submit" value="Login">
+                </form>
+            }
+
+        </div>
+    </div>
+</body>
+</html>

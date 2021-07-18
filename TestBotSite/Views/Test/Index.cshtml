@@ -1,0 +1,124 @@
+﻿@using TestLibrary.Test;
+@model TestBotSite.Models.TestViewModel;
+
+@{
+    IEnumerable<Test> tests = Model.tests;
+    Test currentTest = Model.currentTest;
+    Question currentQuestion = Model.currentQuestion;
+    int i = 0;
+}
+
+<div class="w-100 h-100">
+    <div class="text-center">
+        <h1>Конструктор тестов</h1>
+    </div>
+    <div>
+        <div class="display-flex w-100 h-75">
+            <div class="w-100 min-width" name="tests">
+                <div class="w-100 text-center" name="nameOfTests">
+                    <p class="w-100">Тесты</p>
+                </div>
+                <div class="mr-1">
+                    <p class="list-group-item p-0 rounded mb-1">
+                        <a class="w-100 h-100 btn btn-secondary" type="button"
+                           name="addTestButton"
+                           asp-action="CreateTest">Добавить тест</a>
+                    </p>
+                    <ul class="border border-white rounded list-group scroll-bar h-400px">
+                        @foreach (Test t in tests)
+                        {
+                            <li class="list-group-item d-flex myradio pointer-event h-auto">
+                                <a class="btn w-100 " type="button" name="testButton" id="testButton_@i"
+                                   asp-action="Index" asp-route-idOfTest="@t.ID"
+                                   asp-route-idOfQuestion="0">@t.NameOfTest</a>
+                                <a class="btn btn-danger text-center w-10"
+                                   name="deleteTestButton" value="X"
+                                   asp-action="DeleteTest" asp-route-testId="@t.ID"></a>
+                            </li>
+                            ++i;
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="w-100 min-width" name="questions">
+                <div class="text-center" name="nameOfQuestions">
+                    <p class="w-100">Вопросы</p>
+                </div>
+                <div class="ml-1">
+                    @if (currentTest != null)
+                    {
+                        <p class="list-group-item p-0 rounded mb-1">
+                            <a class="w-100 h-100 btn btn-secondary" type="button"
+                               name="addTestButton"
+                               asp-action="CreateQuestion"
+                               asp-route-testId="@currentTest.ID">Добавить вопрос</a>
+                        </p>
+                    }
+                    else
+                    {
+                        <p class="list-group-item p-0 rounded mb-1 isDisabled">
+                            <a class="w-100 h-100 btn btn-secondary" type="button"
+                               name="addTestButton"
+                               asp-action="CreateQuestion" asp-route-testId="1">Добавить вопрос</a>
+                        </p>
+                    }
+                    <ul class="border border-white rounded list-group scroll-bar h-400px">
+                        @if (currentTest != null)
+                        {
+                            i = 0;
+                            @foreach (Question q in currentTest.Questions)
+                            {
+                                <li class="list-group-item d-flex myradio pointer-event h-auto">
+                                    <a class="btn w-100" type="button" name="testButton" id="testButton_@i"
+                                       asp-action="Index" asp-route-idOfTest="@currentTest.ID"
+                                       asp-route-idOfQuestion="@q.ID">@q.QuestionContent</a>
+                                    <a class="btn btn-danger text-center w-10"
+                                       name="deleteTestButton" value="X"
+                                       asp-action="DeleteQuestion" asp-route-testId="@currentTest.ID"
+                                       asp-route-questionId="@q.ID"></a>
+                                </li>
+                                ++i;
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        @if (currentTest != null)
+        {
+            @if (currentQuestion == null)
+            {
+                <div class="w-100 h-25 mt-1">
+                    <form class="display-flex w-100 h-100px" autocomplete="off" method="post" asp-action="EditTestName">
+                        <div class="w-90 h-100 mr-1">
+                            <input type="hidden" asp-for="@Model.currentTest.ID" />
+                            <input class="btn w-100 ghostwhite-background no-resize
+                                      text-left h-100" type="text" asp-for="@Model.currentTest.NameOfTest" />
+                        </div>
+                        <div class="w-10 h-100 ml-1">
+                            <input class="btn btn-success w-100 h-100" type="submit"
+                                   autocomplete="false" id="saveChangesTest" value="Сохранить" />
+                        </div>
+                    </form>
+                </div>
+            }
+            else
+            {
+                <div class="w-100 h-25 mt-1">
+                    <form class="display-flex w-100 h-100px" autocomplete="off" method="post" asp-action="EditQuestionContent">
+                        <div class="w-90 h-100 mr-1">
+                            <input type="hidden" asp-for="@Model.currentTest.ID" />
+                            <input type="hidden" asp-for="@Model.currentQuestion.ID" />
+                            <input class="btn w-100 ghostwhite-background no-resize
+                                      text-left h-100" type="text" asp-for="@Model.currentQuestion.QuestionContent" />
+                        </div>
+                        <div class="w-10 h-100 ml-1">
+                            <input class="btn btn-success w-100 h-100" type="submit"
+                                   autocomplete="false" id="saveChangesQuestion" value="Сохранить" />
+                        </div>
+                    </form>
+                </div>
+            }
+        }
+    </div>
+</div>
